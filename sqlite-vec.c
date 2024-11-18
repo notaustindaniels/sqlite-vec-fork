@@ -4107,7 +4107,7 @@ static int vec0_init(sqlite3 *db, void *pAux, int argc, const char *const *argv,
                                    "chunk_size must be divisible by 8");
           goto error;
         }
-#define SQLITE_VEC_CHUNK_SIZE_MAX 4096
+#define SQLITE_VEC_CHUNK_SIZE_MAX 16384
         if (chunk_size > SQLITE_VEC_CHUNK_SIZE_MAX) {
           *pzErr =
               sqlite3_mprintf(VEC_CONSTRUCTOR_ERROR "chunk_size too large");
@@ -5021,7 +5021,7 @@ int vec0Filter_knn(vec0_cursor *pCur, vec0_vtab *p, int idxNum,
     rc = SQLITE_ERROR;
     goto cleanup;
   }
-#define SQLITE_VEC_VEC0_K_MAX 4096
+#define SQLITE_VEC_VEC0_K_MAX 16384
   if (k > SQLITE_VEC_VEC0_K_MAX) {
     vtab_set_error(
         &p->base,
